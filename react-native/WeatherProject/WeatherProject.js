@@ -111,12 +111,12 @@ var styles = StyleSheet.create({
     flex: 1,
     borderBottomColor: '#DDDDDD',
     borderBottomWidth: 1,
-    marginLeft: 5,
-    marginTop: 3,
+    // marginLeft: 5,
+    // marginTop: 3,
   },
   zipCode: {
-    width: 100,
-    height: baseFontSize,
+    width: 200,
+    height: 40,
   },
   mainText: {
     flex: 1,
