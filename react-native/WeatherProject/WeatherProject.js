@@ -15,6 +15,7 @@ class WeatherProject extends Component {
     super();
     this.state = {
       zip: '',
+      search: '',
       forecast: {
         main: 'Clouds',
         description: 'few clouds',
@@ -65,7 +66,9 @@ class WeatherProject extends Component {
                 <TextInput
                   style={[styles.zipCode, styles.mainText]}
                   returnKeyType='go'
-                  onSubmitEditing={this._handleTextChange.bind(this)}/>
+                  onChangeText={(search) => this.setState({ search: search })}
+                  onSubmitEditing={this._handleTextChange.bind(this)}
+                  value={this.state.search}/>
               </View>
             </View>
             { content }
