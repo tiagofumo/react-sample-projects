@@ -89,7 +89,9 @@ var styles = StyleSheet.create({
   },
   backdrop: {
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    width: 360,
+    height: 400,
   },
   overlay: {
     paddingTop: 5,
