@@ -36,9 +36,9 @@ const styles = StyleSheet.create({
   mainText: {
     flex: 1,
     fontSize: 16,
-    height: 7,
+    height: 12,
     textAlign: 'center',
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   }
 });
 

@@ -85,7 +85,6 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: 20,
   },
   backdrop: {
     flex: 1,
@@ -104,15 +103,13 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     padding: 10,
   },
   zipContainer: {
     flex: 1,
     borderBottomColor: '#DDDDDD',
     borderBottomWidth: 1,
-    // marginLeft: 5,
-    // marginTop: 3,
   },
   zipCode: {
     width: 200,
