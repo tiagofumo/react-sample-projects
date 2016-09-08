@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 var BookItem = require('./BookItem');
-var API_KEY = '73b19491b83909c7e07016f4bb4644f9:2:60667290';
+var API_KEY = '73b19491b83909c7e07016f4bb4644f9:2:60667290'; // not a secret
 var QUERY_TYPE = 'hardcover-fiction';
 var API_STEM = 'http://api.nytimes.com/svc/books/v3/lists'
 var ENDPOINT = `${API_STEM}/${QUERY_TYPE}?response-format=json&api-key=${API_KEY}`;
