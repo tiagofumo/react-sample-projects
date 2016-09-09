@@ -11,13 +11,10 @@ import {
 } from 'react-native';
 
 var BookItem = require('./BookItem');
-var API_KEY = '73b19491b83909c7e07016f4bb4644f9:2:60667290'; // not a secret
-var QUERY_TYPE = 'hardcover-fiction';
-var API_STEM = 'http://api.nytimes.com/svc/books/v3/lists'
-var ENDPOINT = `${API_STEM}/${QUERY_TYPE}?response-format=json&api-key=${API_KEY}`;
+import { loadBookList } from './app-data';
 
 class BookList extends Component {
-  constructor() {
+  constructor(props) {
     super();
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
@@ -26,7 +23,11 @@ class BookList extends Component {
   }
 
   componentDidMount() {
-    this._refreshData();
+    loadBookList(this.props.listNameEncoded).then((resp) => resp.json()).then((data) => {
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(data.results.books)
+      });
+    });
   }
 
   _renderRow(rowData) {
@@ -53,16 +54,6 @@ class BookList extends Component {
         <Text>Data from the New York Times Best Seller list.</Text>
       </View>
     );
-  }
-
-  _refreshData() {
-    fetch(ENDPOINT)
-      .then((response) => response.json())
-      .then((rjson) => {
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(rjson.results.books)
-      });
-    });
   }
 
   render() {
