@@ -43,26 +43,28 @@ class CategoryList extends Component {
     }).catch((reason) => console.log(reason));
   }
 
-  onCategoryPress(listNameEncoded, event) {
+  onCategoryPress(listName, listNameEncoded, event) {
     this.navigator.push({
-      title: 'A category',
+      title: listName,
       id: 'category',
       listNameEncoded: listNameEncoded
     });
   }
 
-  _renderRow(rowData) {
+  renderRow(rowData) {
     return (
       <View style={styles.sectionDivider}>
         <TouchableHighlight
-          onPress={this.onCategoryPress.bind(this, rowData.list_name_encoded)}>
+          onPress={this.onCategoryPress.bind(this,
+                                             rowData.display_name,
+                                             rowData.list_name_encoded)}>
           <Text style={styles.categoryTitle}>{rowData.display_name}</Text>
         </TouchableHighlight>
       </View>
     );
   }
 
-  _renderHeader() {
+  renderHeader() {
     return (
       <View style={styles.sectionDivider}>
         <Text style={styles.headingText}>
@@ -72,7 +74,7 @@ class CategoryList extends Component {
     );
   }
 
-  _renderFooter() {
+  renderFooter() {
     return (
       <View style={styles.sectionDivider}>
         <Text>Data from the New York Times Best Seller list.</Text>
@@ -80,16 +82,16 @@ class CategoryList extends Component {
     );
   }
 
-  _renderScene(route, navigator) {
+  renderScene(route, navigator) {
     this.navigator = navigator;
     if (route.id === 'category_list') {
       return (
         <ListView
           style={styles.list}
           dataSource={this.state.dataSource}
-          renderRow={this._renderRow.bind(this)}
-          renderHeader={this._renderHeader}
-          renderFooter={this._renderFooter}
+          renderRow={this.renderRow.bind(this)}
+          renderHeader={this.renderHeader}
+          renderFooter={this.renderFooter}
           renderScrollComponent={props => <RecyclerViewBackedScrollView {...props} />}
           enableEmptySections />
       );
@@ -97,7 +99,8 @@ class CategoryList extends Component {
 
     if (route.id == 'category') {
       return (
-        <BookList listNameEncoded={route.listNameEncoded} />
+        <BookList title={route.title}
+                  listNameEncoded={route.listNameEncoded} />
       );
     }
   }
@@ -106,7 +109,7 @@ class CategoryList extends Component {
     return (
       <Navigator
         initialRoute={{ title: 'Category list', index: 0, id: 'category_list' }}
-        renderScene={this._renderScene.bind(this)}/>
+        renderScene={this.renderScene.bind(this)}/>
     );
   }
 }

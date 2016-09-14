@@ -30,7 +30,7 @@ class BookList extends Component {
     });
   }
 
-  _renderRow(rowData) {
+  renderRow(rowData) {
     return (
       <BookItem coverURL={rowData.book_image}
                 title={rowData.title}
@@ -38,17 +38,17 @@ class BookList extends Component {
     );
   }
 
-  _renderHeader() {
+  renderHeader() {
     return (
       <View style={styles.sectionDivider}>
         <Text style={styles.headingText}>
-          Bestsellers in Hardcover Fiction
+          Bestsellers in {this.props.title}
         </Text>
       </View>
     );
   }
 
-  _renderFooter() {
+  renderFooter() {
     return (
       <View style={styles.sectionDivider}>
         <Text>Data from the New York Times Best Seller list.</Text>
@@ -61,9 +61,9 @@ class BookList extends Component {
       <ListView
         style={styles.list}
         dataSource={this.state.dataSource}
-        renderRow={this._renderRow}
-        renderHeader={this._renderHeader}
-        renderFooter={this._renderFooter}
+        renderRow={this.renderRow}
+        renderHeader={this.renderHeader.bind(this)}
+        renderFooter={this.renderFooter}
         renderScrollComponent={props => <RecyclerViewBackedScrollView {...props} />}
         enableEmptySections />
     );
